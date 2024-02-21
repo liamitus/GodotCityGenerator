@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkigtc6y43p5v"]
+
+[ext_resource type="Script" path="res://Scripts/CityGenerator.gd" id="1_o46y3"]
+[ext_resource type="Script" path="res://Scripts/Main Camera.gd" id="2_83way"]
+[ext_resource type="Script" path="res://Scripts/RoadNetwork.gd" id="3_nac1d"]
+[ext_resource type="Script" path="res://Scripts/Panel.gd" id="4_0u0iq"]
+
+[node name="CityGenerator" type="Node3D"]
+script = ExtResource("1_o46y3")
+
+[node name="Main Camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.647043, 0.466335, -0.603215, 3.35893e-08, 0.791149, 0.611624, 0.762454, 0.395747, -0.511907, 0, 145.874, 11.6679)
+script = ExtResource("2_83way")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2027, 0)
+
+[node name="RoadNetwork" type="Node3D" parent="."]
+script = ExtResource("3_nac1d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 126.0
+offset_bottom = 322.0
+script = ExtResource("4_0u0iq")
+
+[node name="GenerateTerrain" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 114.0
+offset_bottom = 71.0
+text = "Generate
+Terrain"
+
+[node name="GenerateRoads" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 88.0
+offset_right = 114.0
+offset_bottom = 147.0
+text = "Generate
+Roads"
+
+[node name="GenerateBuildings" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 166.0
+offset_right = 114.0
+offset_bottom = 225.0
+text = "Generate
+Buildings"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 244.0
+offset_right = 114.0
+offset_bottom = 303.0
+text = "Generate
+Farts"
