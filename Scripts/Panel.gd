@@ -11,6 +11,6 @@ func _ready():
 		button.pressed.connect(on_pressed.bind(button))
 
 func on_pressed(button):
-	print(button.name)
+	print(button.name + " pressed")
 	if button.name == "GenerateRoads":
 		road_network.generate_road_network()
