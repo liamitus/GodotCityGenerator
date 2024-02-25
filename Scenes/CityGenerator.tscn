@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkigtc6y43p5v"]
+[gd_scene load_steps=6 format=3 uid="uid://dkigtc6y43p5v"]
 
 [ext_resource type="Script" path="res://Scripts/CityGenerator.gd" id="1_o46y3"]
 [ext_resource type="Script" path="res://Scripts/Main Camera.gd" id="2_83way"]
+[ext_resource type="Script" path="res://Scripts/CityGround.gd" id="3_lwhjm"]
 [ext_resource type="Script" path="res://Scripts/RoadNetwork.gd" id="3_nac1d"]
 [ext_resource type="Script" path="res://Scripts/Panel.gd" id="4_0u0iq"]
 
@@ -9,11 +10,14 @@
 script = ExtResource("1_o46y3")
 
 [node name="Main Camera" type="Camera3D" parent="."]
-transform = Transform3D(-0.647043, 0.466335, -0.603215, 3.35893e-08, 0.791149, 0.611624, 0.762454, 0.395747, -0.511907, 0, 145.874, 11.6679)
+transform = Transform3D(-0.647043, 0.466335, -0.603215, 3.35893e-08, 0.791149, 0.611624, 0.762454, 0.395747, -0.511907, -286.513, 145.874, -292.659)
 script = ExtResource("2_83way")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2027, 0)
+
+[node name="CityGround" type="MeshInstance3D" parent="."]
+script = ExtResource("3_lwhjm")
 
 [node name="RoadNetwork" type="Node3D" parent="."]
 script = ExtResource("3_nac1d")
@@ -21,42 +25,84 @@ script = ExtResource("3_nac1d")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_right = 126.0
-offset_bottom = 322.0
+offset_right = 144.0
+offset_bottom = 503.0
 script = ExtResource("4_0u0iq")
 
 [node name="GenerateTerrain" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 114.0
-offset_bottom = 71.0
+offset_left = 21.0
+offset_top = 11.0
+offset_right = 123.0
+offset_bottom = 70.0
 text = "Generate
 Terrain"
 
 [node name="GenerateRoads" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 88.0
-offset_right = 114.0
-offset_bottom = 147.0
+offset_left = 20.0
+offset_top = 272.0
+offset_right = 122.0
+offset_bottom = 331.0
 text = "Generate
 Roads"
 
 [node name="GenerateBuildings" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 166.0
-offset_right = 114.0
-offset_bottom = 225.0
+offset_left = 20.0
+offset_top = 350.0
+offset_right = 122.0
+offset_bottom = 409.0
 text = "Generate
 Buildings"
 
 [node name="Button4" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 244.0
-offset_right = 114.0
-offset_bottom = 303.0
+offset_left = 20.0
+offset_top = 428.0
+offset_right = 122.0
+offset_bottom = 487.0
 text = "Generate
 Farts"
+
+[node name="FrequencySlider" type="HSlider" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 84.0
+offset_right = 131.0
+offset_bottom = 129.0
+min_value = 0.01
+max_value = 0.2
+step = 0.01
+value = 0.05
+
+[node name="frequency" type="RichTextLabel" parent="CanvasLayer/Panel/FrequencySlider"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -9.0
+offset_right = 128.0
+offset_bottom = 25.0
+bbcode_enabled = true
+text = "[center]frequency[/center]"
+
+[node name="OctavesSlider" type="HSlider" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 126.0
+offset_right = 131.0
+offset_bottom = 171.0
+min_value = 1.0
+max_value = 6.0
+value = 5.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Panel/OctavesSlider"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -10.0
+offset_right = 128.0
+offset_bottom = 24.0
+bbcode_enabled = true
+text = "[center]octaves[/center]"
+
+[connection signal="value_changed" from="CanvasLayer/Panel/FrequencySlider" to="CanvasLayer/Panel" method="_on_frequency_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Panel/OctavesSlider" to="CanvasLayer/Panel" method="_on_octaves_slider_value_changed"]
